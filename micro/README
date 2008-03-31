@@ -1,0 +1,35 @@
+OpenlySociable > Micro Version
+==============================
+
+This is a wrapper around the Camping microframework that allows for a clean, effective way of writing OpenSocial widgets. 
+Check out http://code.whytheluckystiff.net/camping/ for more details regarding the way Camping apps are written. 
+Also check out the examples folder for self-contained OpenlySociable Micro apps.
+
+Here is the simplest OpenlySociable widget you can write:
+
+require 'openly_sociable_micro'
+OpenSocial.make_app :HelloWorld
+
+module HelloWorld::Controllers
+  class Index < R '/'
+    def get
+      @title = "Hello World"
+      render :index
+    end
+  end
+end
+
+module HelloWorld::Views
+  def index
+    p "Hello World"
+  end
+end
+
+OpenSocial.start_mongrel :HelloWorld, :port => 3301, :root => "/"
+
+
+Requirements
+============
+* Camping
+* Builder
+* Mongrel
